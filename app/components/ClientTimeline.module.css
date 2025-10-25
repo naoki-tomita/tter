@@ -1,0 +1,13 @@
+.tweet {
+  border: 1px solid rgb(206, 212, 218);
+  border-bottom: none;
+}
+
+.tweet:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.tweet:last-child {
+  border-bottom: 1px solid rgb(206, 212, 218);
+  border-radius: 0 0 8px 8px;
+}

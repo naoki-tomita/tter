@@ -25,24 +25,26 @@ type TweetEntity = {
 
 export async function getTimelines(): Promise<Tweet[]> {
   const userId = await getCurrentUserId();
-  const results = db.prepare<[number], TweetEntity>(`
+  const result = await db.execute(`
     SELECT t.id, t.content, t.user_id, t.created_at, u.name as user_name FROM tweets t
     JOIN users u ON t.user_id = u.id
     WHERE t.user_id = ?
     ORDER BY t.created_at DESC;
-  `).all(userId);
-  return results.map(it => ({
-    id: it.id,
-    content: it.content,
-    user: {
-      id: it.user_id,
-      name: it.user_name,
-    },
-    createdAt: it.created_at,
-  }))
+  `, [userId])
+  return result.rows
+    .map(it => it as unknown as TweetEntity)
+    .map((it) => ({
+      id: it.id as number,
+      content: it.content as string,
+      user: {
+        id: it.user_id as number,
+        name: it.user_name as string,
+      },
+      createdAt: it.created_at as string,
+    }));
 }
 
 export async function post(content: string) {
   const userId = await getCurrentUserId();
-  db.prepare("INSERT INTO tweets (user_id, content) VALUES (?, ?);").run(userId, content);
+  await db.execute("INSERT INTO tweets (user_id, content) VALUES (?, ?);", [userId, content]);
 }

@@ -14,5 +14,6 @@ export async function getCurrentUserId(): Promise<number | null> {
 
 export async function getCurrentUser() {
   const userId = await getCurrentUserId();
-  return db.prepare<[number], User>("SELECT id, name FROM users WHERE id = ?").get(userId);
+  const result = await db.execute("SELECT id, name FROM users WHERE id = ?", [userId]);
+  return result.rows[0] as unknown as User | undefined;
 }

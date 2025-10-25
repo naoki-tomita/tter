@@ -12,8 +12,6 @@ export async function createUser(form: FormData) {
   const hash = createHash("sha256");
   const passwordHash = hash.update(password).digest("hex");
 
-  db.prepare("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)")
-    .run(name, email, passwordHash);
-
+  await db.execute("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)", [name, email, passwordHash]);
   return redirect("/users/login");
 }

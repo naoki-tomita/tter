@@ -15,7 +15,7 @@ export const TweetList = ({ children }: { children: React.ReactNode }) => {
 export const Tweet = ({ tweet }: { tweet: TweetType }) => {
   return (
     <Flex className={style.tweet} component="li" p="md" gap="md" align="center">
-      <Avatar>{tweet.user.name.slice(0, 2).toUpperCase()}</Avatar>
+      <Avatar color="initials" name={tweet.user.name}/>
       <Flex direction="column" w="100%">
         <Link href={`/users/${tweet.user.id}`}>
           <Anchor component="span" size="xs" fw="bold">

@@ -8,6 +8,7 @@ export const UserCard = ({ user }: { user: User }) => {
         <Avatar
           name={user.name}
           size={94}
+          color="initials"
           radius="md"
         />
         <div>

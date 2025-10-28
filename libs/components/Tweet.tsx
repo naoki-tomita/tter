@@ -17,8 +17,8 @@ export const Tweet = ({ tweet }: { tweet: TweetType }) => {
     <Flex className={style.tweet} component="li" p="md" gap="md" align="center">
       <Avatar>{tweet.user.name.slice(0, 2).toUpperCase()}</Avatar>
       <Flex direction="column" w="100%">
-        <Link href={`/users/${tweet.user.id}`} style={{ textDecoration: 'none' }}>
-          <Anchor component="span" size="xs" fw="bold" td="none">
+        <Link href={`/users/${tweet.user.id}`}>
+          <Anchor component="span" size="xs" fw="bold">
             {tweet.user.name}
           </Anchor>
         </Link>

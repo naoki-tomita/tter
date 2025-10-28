@@ -1,7 +1,8 @@
-import { Avatar, Menu, MenuTarget, MenuDropdown, MenuItem, UnstyledButton } from "@mantine/core";
+import { Avatar, Menu, MenuTarget, MenuDropdown, MenuItem, UnstyledButton, Button } from "@mantine/core";
 import { getCurrentUser } from "../actions/user";
 import { logout } from "../actions/logout";
 import { type User as UserType } from "../../libs/db/user";
+import Link from "next/link";
 
 export const User = async () => {
   const user = await getCurrentUser();
@@ -9,7 +10,7 @@ export const User = async () => {
 }
 
 const NotLoggedInUser = () => {
-  return <div><a href="/users/login">No User ID</a></div>;
+  return <Link href="/users/login"><Button>Login</Button></Link>
 }
 
 const LoggedInUser = async ({ user }: { user: UserType }) => {
@@ -19,10 +20,9 @@ const LoggedInUser = async ({ user }: { user: UserType }) => {
         <UnstyledButton>
           <Avatar
             color="initials"
+            name={user.name}
             radius="xl"
-          >
-            {user.name.slice(0, 2).toUpperCase()}
-          </Avatar>
+          />
         </UnstyledButton>
       </MenuTarget>
       <MenuDropdown>

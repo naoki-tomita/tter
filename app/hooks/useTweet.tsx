@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
-import { getTimelines, post, Tweet } from "../actions/timeline";
+import { getTimelines, post } from "../actions/timeline";
+import { Tweet } from "../../libs/db/tweet";
 
 
 export const TweetContext = createContext<{

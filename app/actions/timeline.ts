@@ -1,19 +1,8 @@
 "use server";
 
 import { db } from "../../util/Database";
+import { Tweet } from "../../util/types";
 import { getCurrentUserId } from "./user";
-
-type User = {
-  id: number;
-  name: string;
-}
-
-export type Tweet = {
-  id: number;
-  user: User;
-  content: string;
-  createdAt: string;
-}
 
 type TweetEntity = {
   id: number;

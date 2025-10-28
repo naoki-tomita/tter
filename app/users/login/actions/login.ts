@@ -1,6 +1,5 @@
 "use server";
 
-import { createHash } from "node:crypto";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { users } from "../../../../libs/db/user";
@@ -14,7 +13,11 @@ export async function login(form: FormData) {
   const user = await users.findByEmailAndPasswordHash(email, passwordHash);
   if (user) {
     const ck = await cookies();
-    ck.set("AUTH_TOKEN", user.id.toString());
+    ck.set({
+      name: "AUTH_TOKEN",
+      value: user.id.toString(),
+      secure: true,
+    });
     redirect("/");
   }
   throw new Error("Invalid credentials");

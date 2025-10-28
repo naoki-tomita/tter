@@ -1,4 +1,3 @@
-import { createHash } from "node:crypto";
 import { db } from "../Database";
 
 export type User = {

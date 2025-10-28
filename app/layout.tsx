@@ -1,16 +1,21 @@
 import '@mantine/core/styles.css';
 import { Anchor, Box, Container, Flex, MantineProvider, Title } from '@mantine/core';
 import { User } from "./components/User";
+import Shevelon from "../libs/themes/Shevelon";
+import Murkrow from "../libs/themes/Murkrow";
+import Link from 'next/link';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-         <MantineProvider>
+         <MantineProvider theme={Murkrow}>
           <Container strategy="grid" size={500}>
             <Box>
               <Flex justify="space-between" align="center" mb="md" mt="md">
-                <Anchor href="/"><Title>Tter</Title></Anchor>
+                <Link href="/" style={{ textDecoration: 'none' }}>
+                  <Anchor component='span'><Title>Tter</Title></Anchor>
+                </Link>
                 <User />
               </Flex>
             </Box>

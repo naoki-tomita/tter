@@ -21,7 +21,7 @@ export const Tweeter = () => {
         mb="sm"
       />
       <Group justify="flex-end">
-        <Button onClick={handlePost}>Tweet</Button>
+        <Button onClick={handlePost} disabled={!content}>Tweet</Button>
       </Group>
     </Box>
   );

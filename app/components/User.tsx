@@ -14,7 +14,7 @@ const NotLoggedInUser = () => {
 
 const LoggedInUser = async ({ user }: { user: UserType }) => {
   return (
-    <Menu shadow="lg" width={200}>
+    <Menu shadow="lg" width={200} position="bottom-end">
       <MenuTarget>
         <UnstyledButton>
           <Avatar

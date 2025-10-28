@@ -1,6 +1,7 @@
-import { Avatar, Flex, Text } from "@mantine/core";
+import { Anchor, Avatar, Flex, Text } from "@mantine/core";
 import { type Tweet as TweetType } from "../../libs/db/tweet";
 import style from "./Tweet.module.css";
+import Link from "next/link";
 
 function format(dateString: string) {
   const date = new Date(dateString);
@@ -16,7 +17,11 @@ export const Tweet = ({ tweet }: { tweet: TweetType }) => {
     <Flex className={style.tweet} component="li" p="md" gap="md" align="center">
       <Avatar>{tweet.user.name.slice(0, 2).toUpperCase()}</Avatar>
       <Flex direction="column" w="100%">
-        <Text size="xs">{tweet.user.name}</Text>
+        <Link href={`/users/${tweet.user.id}`} style={{ textDecoration: 'none' }}>
+          <Anchor component="span" size="xs" fw="bold" td="none">
+            {tweet.user.name}
+          </Anchor>
+        </Link>
         <Text size="md">{tweet.content}</Text>
         <Flex justify="flex-end">
           <Text size="xs" c="gray">{format(tweet.createdAt)}</Text>

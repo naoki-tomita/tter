@@ -8,6 +8,9 @@ import Link from 'next/link';
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <title>Tter</title>
+      </head>
       <body>
         <style>{`a { text-decoration: none; }`}</style>
         <MantineProvider theme={Murkrow} defaultColorScheme="auto">

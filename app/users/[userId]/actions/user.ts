@@ -1,4 +1,4 @@
-import { db } from "../../../../util/Database";
+import { users } from "../../../../libs/db/user";
 
 type User = {
   id: number;
@@ -6,9 +6,5 @@ type User = {
 }
 
 export async function getUserInfo(userId: number): Promise<User> {
-  const { rows: [user] } = await db.execute("SELECT * FROM users WHERE id = ?", [userId]);
-  return {
-    id: user.id as number,
-    name: user.name as string,
-  };
+  return users.findById(userId);
 }

@@ -1,6 +1,7 @@
 import { Avatar, Menu, MenuTarget, MenuDropdown, MenuItem, UnstyledButton } from "@mantine/core";
-import { getCurrentUser, type User as UserType } from "../actions/user";
+import { getCurrentUser } from "../actions/user";
 import { logout } from "../actions/logout";
+import { type User as UserType } from "../../libs/db/user";
 
 export const User = async () => {
   const user = await getCurrentUser();

@@ -3,8 +3,8 @@
 import { useContext } from "react";
 import { TweetContext, TweetProvider } from "../hooks/useTweet";
 import { Tweeter } from "./Tweeter";
+import { type Tweet } from "../../libs/db/tweet";
 import { Avatar, Flex, Text } from "@mantine/core";
-import { type Tweet } from "../../util/types";
 import style from "./ClientTimeline.module.css";
 
 

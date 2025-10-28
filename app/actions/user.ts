@@ -1,20 +1,15 @@
 "use server";
 
 import { headers } from "next/headers";
-import { db } from "../../util/Database";
-
-export type User = {
-  id: number;
-  name: string;
-}
+import { User, users } from "../../libs/db/user";
 
 export async function getCurrentUserId(): Promise<number | null> {
   const userIdString = await headers().then(it => it.get("X-User-Id")).then(it => it ? parseInt(it, 10) : null);
   return userIdString;
 }
 
-export async function getCurrentUser() {
+export async function getCurrentUser(): Promise<User | undefined> {
   const userId = await getCurrentUserId();
-  const result = await db.execute("SELECT id, name FROM users WHERE id = ?", [userId]);
-  return result.rows[0] as unknown as User | undefined;
+  if (userId == null) return undefined;
+  return users.findById(userId);
 }

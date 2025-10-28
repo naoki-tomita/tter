@@ -3,6 +3,7 @@ import { db } from "../Database";
 export type User = {
   id: number;
   name: string;
+  bio?: string;
 }
 
 export const users = {
@@ -11,6 +12,7 @@ export const users = {
     return {
       id: user.id as number,
       name: user.name as string,
+      bio: user.bio as string | undefined,
     };
   },
   async create(name: string, email: string, passwordHash: string) {
@@ -22,5 +24,8 @@ export const users = {
       id: rows[0].id as number,
       name: rows[0].name as string,
     };
+  },
+  async update(userId: number, name: string, bio: string | undefined) {
+    await db.execute("UPDATE users SET name = ?, bio = ? WHERE id = ?", [name, bio ?? null, userId]);
   }
 }

@@ -5,7 +5,7 @@ import { getCurrentUserId } from "./user";
 
 export async function getTimelines(): Promise<Tweet[]> {
   const userId = await getCurrentUserId();
-  return tweets.findByUserId(userId);
+  return tweets.findTimelines(userId);
 }
 
 export async function post(content: string) {

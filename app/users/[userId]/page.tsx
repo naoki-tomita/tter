@@ -3,15 +3,24 @@ import { Tweet, TweetList } from "../../../libs/components/Tweet";
 import { getUserTweets } from "./actions/tweet";
 import { getUserInfo } from "./actions/user";
 import { UserCard } from "./components/UserCard";
+import { getCurrentUserId } from "../../actions/user";
+import { isFollowing } from "./actions/following";
 
 export default async function Page({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params;
   const userIdNum = parseInt(userId, 10);
+  const currentUserId = await getCurrentUserId();
   const userInfo = await getUserInfo(userIdNum);
   const tweets = await getUserTweets(userIdNum);
+  const following = await isFollowing(currentUserId, userIdNum);
+
   return (
     <Box>
-      <UserCard user={userInfo} />
+      <UserCard
+        followee={userInfo}
+        followerId={currentUserId}
+        following={following}
+      />
       <Box mt="xl">
         <TweetList>
           {tweets.map(tweet => (

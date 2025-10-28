@@ -26,9 +26,11 @@ const LoggedInUser = async ({ user }: { user: UserType }) => {
         </UnstyledButton>
       </MenuTarget>
       <MenuDropdown>
-        <MenuItem component="a" href={`/users/${user.id}`}>
-          Profile
-        </MenuItem>
+        <Link href="/users/me">
+          <MenuItem>
+            Profile
+          </MenuItem>
+        </Link>
         <MenuItem onClick={logout}>
           Logout
         </MenuItem>

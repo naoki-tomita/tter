@@ -5,12 +5,15 @@ import { TweetContext, TweetProvider } from "../hooks/useTweet";
 import { Tweeter } from "./Tweeter";
 import { type Tweet as TweetType } from "../../libs/db/tweet";
 import { Tweet, TweetList } from "../../libs/components/Tweet";
+import { Box } from "@mantine/core";
 
 export const ClientTimeline = ({ tweets }: { tweets: TweetType[] }) => {
   return (
     <TweetProvider initialTweets={tweets}>
       <Tweeter />
-      <TimelineInner />
+      <Box mt="lg">
+        <TimelineInner />
+      </Box>
     </TweetProvider>
   );
 }

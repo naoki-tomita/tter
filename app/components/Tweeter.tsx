@@ -7,20 +7,20 @@ import { Box, Button, Group, Textarea } from "@mantine/core";
 export const Tweeter = () => {
   const { post } = useContext(TweetContext);
   const [content, setContent] = useState("");
+
   async function handlePost() {
     await post(content);
     setContent("");
   }
 
   return (
-    <Box mb="md">
+    <Box>
       <Textarea
         placeholder="今日はなにした？"
         value={content}
         onChange={e => setContent(e.target.value)}
-        mb="sm"
       />
-      <Group justify="flex-end">
+      <Group justify="flex-end" mt="sm">
         <Button onClick={handlePost} disabled={!content}>Tweet</Button>
       </Group>
     </Box>

@@ -31,6 +31,11 @@ const LoggedInUser = async ({ user }: { user: UserType }) => {
             Profile
           </MenuItem>
         </Link>
+        <Link href="/users">
+          <MenuItem>
+            ユーザー一覧
+          </MenuItem>
+        </Link>
         <MenuItem onClick={logout}>
           Logout
         </MenuItem>

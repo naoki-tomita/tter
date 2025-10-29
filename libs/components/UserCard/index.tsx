@@ -1,17 +1,18 @@
 "use client";
 
 import { Group, Avatar, Text, Flex, Button } from "@mantine/core";
-import { type User } from "../../../../libs/db/user";
-import classes from "./UserCard.module.css";
-import { follow, unfollow } from "../actions/following";
-import { redirect } from "next/navigation";
+import { type User } from "../../db/user";
+import classes from "./index.module.css";
+import { follow, unfollow } from "./actions";
+import { redirect, useRouter } from "next/navigation";
 
 export const UserCard = ({ followee, followerId, following }: { followee: User, followerId: number, following: boolean }) => {
+  const router = useRouter();
   const followable = followee.id !== followerId;
 
   async function handleFollowClick() {
     await (following ? unfollow : follow)(followerId, followee.id);
-    redirect(`/users/${followee.id}`);
+    router.refresh();
   }
 
   return (

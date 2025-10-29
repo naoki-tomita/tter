@@ -15,9 +15,7 @@ export const users = {
       bio: user.bio as string | undefined,
     };
   },
-  async create(name: string, email: string, passwordHash: string) {
-    await db.execute("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)", [name, email, passwordHash]);
-  },
+
   async findByEmailAndPasswordHash(email: string, passwordHash: string): Promise<User | undefined> {
     const { rows } = await db.execute("SELECT * FROM users WHERE email = ? AND password_hash = ?", [email, passwordHash]);
     return {
@@ -25,7 +23,22 @@ export const users = {
       name: rows[0].name as string,
     };
   },
+
+  async findAll() {
+    const { rows } = await db.execute("SELECT id, name, bio FROM users");
+    return rows.map(row => ({
+      id: row.id as number,
+      name: row.name as string,
+      bio: row.bio as string | undefined,
+    }));
+  },
+
+  async create(name: string, email: string, passwordHash: string) {
+    await db.execute("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)", [name, email, passwordHash]);
+  },
+
   async update(userId: number, name: string, bio: string | undefined) {
     await db.execute("UPDATE users SET name = ?, bio = ? WHERE id = ?", [name, bio ?? null, userId]);
-  }
+  },
+
 }

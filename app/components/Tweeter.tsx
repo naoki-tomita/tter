@@ -1,16 +1,18 @@
 "use client";
 
-import { useContext, useState } from "react";
-import { TweetContext } from "../hooks/useTweet";
+import { useState } from "react";
 import { Box, Button, Group, Textarea } from "@mantine/core";
+import { useRouter } from "next/navigation";
+import { post } from "../actions/timeline";
 
 export const Tweeter = () => {
-  const { post } = useContext(TweetContext);
+  const router = useRouter();
   const [content, setContent] = useState("");
 
   async function handlePost() {
     await post(content);
     setContent("");
+    router.refresh();
   }
 
   return (

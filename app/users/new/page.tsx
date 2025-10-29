@@ -6,7 +6,7 @@ export default function CreatePage() {
   return (
     <Container size={420} my={40}>
       <Title ta="center" className={classes.title}>
-        Hello!
+        Hello world!
       </Title>
 
       <Paper component="form" withBorder shadow="sm" p={22} mt={30} radius="md" action={createUser}>

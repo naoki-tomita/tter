@@ -2,7 +2,7 @@ import { Box } from "@mantine/core";
 import { Tweet, TweetList } from "../../../libs/components/Tweet";
 import { getUserTweets } from "./actions/tweet";
 import { getUserInfo } from "./actions/user";
-import { UserCard } from "./components/UserCard";
+import { UserCard } from "../../../libs/components/UserCard";
 import { getCurrentUserId } from "../../actions/user";
 import { isFollowing } from "./actions/following";
 

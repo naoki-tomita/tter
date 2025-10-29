@@ -11,7 +11,7 @@ export const ClientTimeline = ({ tweets }: { tweets: TweetType[] }) => {
   return (
     <TweetProvider initialTweets={tweets}>
       <Tweeter />
-      <Box mt="lg">
+      <Box mt="lg" mb="lg">
         <TimelineInner />
       </Box>
     </TweetProvider>

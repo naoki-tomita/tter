@@ -17,12 +17,7 @@ export const Tweeter = () => {
 
   return (
     <Box>
-      <Textarea
-        placeholder="今日はなにした？"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        size="md"
-      />
+      <Textarea placeholder="今日はなにした？" value={content} onChange={(e) => setContent(e.target.value)} size="md" />
       <Group justify="flex-end" mt="sm">
         <Button onClick={handlePost} disabled={!content}>
           Tweet

@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Menu,
-  MenuTarget,
-  MenuDropdown,
-  MenuItem,
-  UnstyledButton,
-  Button,
-} from "@mantine/core";
+import { Avatar, Menu, MenuTarget, MenuDropdown, MenuItem, UnstyledButton, Button } from "@mantine/core";
 import { getCurrentUser } from "../actions/user";
 import { logout } from "../actions/logout";
 import { type User as UserType } from "../../libs/db/user";

@@ -15,14 +15,7 @@ export default async function Page() {
         defaultValue={user.name}
         size="md"
       />
-      <Textarea
-        name="bio"
-        label="自己紹介"
-        placeholder="あなたの自己紹介"
-        mt="sm"
-        defaultValue={user.bio}
-        size="md"
-      />
+      <Textarea name="bio" label="自己紹介" placeholder="あなたの自己紹介" mt="sm" defaultValue={user.bio} size="md" />
       <Flex mt="md" justify="flex-end">
         <Button type="submit">更新</Button>
       </Flex>

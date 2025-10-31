@@ -27,16 +27,10 @@ export const follows = {
   },
 
   async follow(followerId: number, followeeId: number): Promise<void> {
-    await db.execute(
-      "INSERT INTO followings (follower_id, followee_id) VALUES (?, ?);",
-      [followerId, followeeId],
-    );
+    await db.execute("INSERT INTO followings (follower_id, followee_id) VALUES (?, ?);", [followerId, followeeId]);
   },
 
   async unfollow(followerId: number, followeeId: number): Promise<void> {
-    await db.execute(
-      "DELETE FROM followings WHERE follower_id = ? AND followee_id = ?;",
-      [followerId, followeeId],
-    );
+    await db.execute("DELETE FROM followings WHERE follower_id = ? AND followee_id = ?;", [followerId, followeeId]);
   },
 };

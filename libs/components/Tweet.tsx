@@ -9,9 +9,7 @@ function format(dateString: string) {
 }
 
 export const TweetList = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>{children}</ul>
-  );
+  return <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>{children}</ul>;
 };
 
 export const Tweet = ({ tweet }: { tweet: TweetType }) => {

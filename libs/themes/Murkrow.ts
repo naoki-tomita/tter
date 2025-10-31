@@ -2,18 +2,7 @@ import { MantineThemeOverride, virtualColor } from "@mantine/core";
 
 const theme: MantineThemeOverride = {
   colors: {
-    dark: [
-      "#fff",
-      "#7b92c7",
-      "#4765aa",
-      "#2f4371",
-      "#27375c",
-      "#1c2a4a",
-      "#151e33",
-      "#0e1626",
-      "#0a101d",
-      "#060b15",
-    ],
+    dark: ["#fff", "#7b92c7", "#4765aa", "#2f4371", "#27375c", "#1c2a4a", "#151e33", "#0e1626", "#0a101d", "#060b15"],
     gray: [
       "#e3e7f1",
       "#d8ddeb",
@@ -74,18 +63,7 @@ const theme: MantineThemeOverride = {
       "#5c2200",
       "#471700",
     ],
-    red: [
-      "#fff5f5",
-      "#ffe3e3",
-      "#ffc9c9",
-      "#ffa8a8",
-      "#ff8787",
-      "#ff6b6b",
-      "#fa5252",
-      "#f03e3e",
-      "#e03131",
-      "#c92a2a",
-    ],
+    red: ["#fff5f5", "#ffe3e3", "#ffc9c9", "#ffa8a8", "#ff8787", "#ff6b6b", "#fa5252", "#f03e3e", "#e03131", "#c92a2a"],
     pink: [
       "#fff0f6",
       "#ffdeeb",

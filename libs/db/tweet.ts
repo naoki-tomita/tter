@@ -66,10 +66,7 @@ export const tweets = {
   },
 
   async create(userId: number, content: string) {
-    await db.execute("INSERT INTO tweets (user_id, content) VALUES (?, ?);", [
-      userId,
-      content,
-    ]);
+    await db.execute("INSERT INTO tweets (user_id, content) VALUES (?, ?);", [userId, content]);
   },
 
   async search(query: string): Promise<Tweet[]> {

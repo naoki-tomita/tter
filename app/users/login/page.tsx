@@ -15,11 +15,7 @@ import { login } from "./actions/login";
 import Link from "next/link";
 import { Notice } from "./components/Notice";
 
-export default async function LoginPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ error: string }>;
-}) {
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error: string }> }) {
   const { error } = await searchParams;
 
   return (
@@ -38,23 +34,8 @@ export default async function LoginPage({
           </Link>
         </Text>
 
-        <Paper
-          component="form"
-          withBorder
-          shadow="sm"
-          p={22}
-          mt={30}
-          radius="md"
-          action={login}
-        >
-          <TextInput
-            name="email"
-            label="メールアドレス"
-            placeholder="you@tter.dev"
-            required
-            radius="md"
-            size="md"
-          />
+        <Paper component="form" withBorder shadow="sm" p={22} mt={30} radius="md" action={login}>
+          <TextInput name="email" label="メールアドレス" placeholder="you@tter.dev" required radius="md" size="md" />
           <PasswordInput
             name="password"
             label="パスワード"
@@ -75,9 +56,7 @@ export default async function LoginPage({
           </Button>
         </Paper>
       </Container>
-      {error != null && (
-        <Notice text="メールアドレスまたはパスワードが正しくありません。" />
-      )}
+      {error != null && <Notice text="メールアドレスまたはパスワードが正しくありません。" />}
     </>
   );
 }

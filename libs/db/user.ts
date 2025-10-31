@@ -18,14 +18,11 @@ export const users = {
     };
   },
 
-  async findByEmailAndPasswordHash(
-    email: string,
-    passwordHash: string,
-  ): Promise<User | undefined> {
-    const { rows } = await db.execute(
-      "SELECT * FROM users WHERE email = ? AND password_hash = ?",
-      [email, passwordHash],
-    );
+  async findByEmailAndPasswordHash(email: string, passwordHash: string): Promise<User | undefined> {
+    const { rows } = await db.execute("SELECT * FROM users WHERE email = ? AND password_hash = ?", [
+      email,
+      passwordHash,
+    ]);
     if (rows.length === 0) {
       return undefined;
     }
@@ -45,17 +42,10 @@ export const users = {
   },
 
   async create(name: string, email: string, passwordHash: string) {
-    await db.execute(
-      "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)",
-      [name, email, passwordHash],
-    );
+    await db.execute("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)", [name, email, passwordHash]);
   },
 
   async update(userId: number, name: string, bio: string | undefined) {
-    await db.execute("UPDATE users SET name = ?, bio = ? WHERE id = ?", [
-      name,
-      bio ?? null,
-      userId,
-    ]);
+    await db.execute("UPDATE users SET name = ?, bio = ? WHERE id = ?", [name, bio ?? null, userId]);
   },
 };

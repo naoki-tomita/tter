@@ -6,11 +6,7 @@ import { UserCard } from "../../../libs/components/UserCard";
 import { getCurrentUserId } from "../../actions/user";
 import { isFollowing } from "./actions/following";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ userId: string }>;
-}) {
+export default async function Page({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params;
   const userIdNum = parseInt(userId, 10);
   const currentUserId = await getCurrentUserId();
@@ -20,11 +16,7 @@ export default async function Page({
 
   return (
     <Box>
-      <UserCard
-        followee={userInfo}
-        followerId={currentUserId}
-        following={following}
-      />
+      <UserCard followee={userInfo} followerId={currentUserId} following={following} />
       <Box mt="xl">
         <TweetList>
           {tweets.map((tweet) => (

@@ -19,30 +19,17 @@ export const SearchBar = () => {
 
   return (
     <Flex gap="sm" align="center" justify="start" w="100%">
-      <Transition
-        mounted={!open}
-        transition="scale-x"
-        duration={200}
-        timingFunction="ease"
-      >
+      <Transition mounted={!open} transition="scale-x" duration={200} timingFunction="ease">
         {(style) => (
           <ActionIcon
             style={{ ...style, position: "absolute" }}
-            onClick={() => (
-              setOpen(true),
-              setTimeout(() => ref.current.focus(), 10)
-            )}
+            onClick={() => (setOpen(true), setTimeout(() => ref.current.focus(), 10))}
           >
             <CiSearch size={24} />
           </ActionIcon>
         )}
       </Transition>
-      <Transition
-        mounted={open}
-        transition="scale-x"
-        duration={200}
-        timingFunction="ease"
-      >
+      <Transition mounted={open} transition="scale-x" duration={200} timingFunction="ease">
         {(style) => (
           <Box component="form" onSubmit={handleSubmit} w="100%">
             <TextInput

@@ -21,15 +21,10 @@ export const UserCard = ({
   const router = useRouter();
   const followable = followee.id !== followerId;
 
-  async function handleFollowClick(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) {
+  async function handleFollowClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     setLoading(true);
-    await Promise.all([
-      (following ? unfollow : follow)(followerId, followee.id),
-      wait(300),
-    ]);
+    await Promise.all([(following ? unfollow : follow)(followerId, followee.id), wait(300)]);
     setLoading(false);
     router.refresh();
   }

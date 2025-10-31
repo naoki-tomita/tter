@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "format": "prettier --write ."
+    "format": "prettier --write . --print-width 120"
   },
   "dependencies": {
     "@libsql/client": "^0.15.15",

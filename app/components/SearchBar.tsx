@@ -23,7 +23,7 @@ export const SearchBar = () => {
         {(style) =>
           <ActionIcon
             style={{ ...style, position: "absolute" }}
-            onClick={() => (setOpen(true), setTimeout(() => ref.current.focus()))}
+            onClick={() => (setOpen(true), setTimeout(() => ref.current.focus(), 10))}
           >
             <CiSearch size={24} />
           </ActionIcon>}

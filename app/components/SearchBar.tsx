@@ -2,7 +2,7 @@
 import { ActionIcon, Box, Flex, TextInput, Transition } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
-import { CiSearch } from "react-icons/ci"
+import { CiSearch } from "react-icons/ci";
 
 export const SearchBar = () => {
   const [open, setOpen] = useState(false);
@@ -19,17 +19,31 @@ export const SearchBar = () => {
 
   return (
     <Flex gap="sm" align="center" justify="start" w="100%">
-      <Transition mounted={!open} transition="scale-x" duration={200} timingFunction="ease">
-        {(style) =>
+      <Transition
+        mounted={!open}
+        transition="scale-x"
+        duration={200}
+        timingFunction="ease"
+      >
+        {(style) => (
           <ActionIcon
             style={{ ...style, position: "absolute" }}
-            onClick={() => (setOpen(true), setTimeout(() => ref.current.focus(), 10))}
+            onClick={() => (
+              setOpen(true),
+              setTimeout(() => ref.current.focus(), 10)
+            )}
           >
             <CiSearch size={24} />
-          </ActionIcon>}
+          </ActionIcon>
+        )}
       </Transition>
-      <Transition mounted={open} transition="scale-x" duration={200} timingFunction="ease">
-        {(style) =>
+      <Transition
+        mounted={open}
+        transition="scale-x"
+        duration={200}
+        timingFunction="ease"
+      >
+        {(style) => (
           <Box component="form" onSubmit={handleSubmit} w="100%">
             <TextInput
               size="md"
@@ -41,8 +55,9 @@ export const SearchBar = () => {
               value={searchText}
               onChange={(e) => setSearchText(e.currentTarget.value)}
             />
-          </Box>}
+          </Box>
+        )}
       </Transition>
     </Flex>
   );
-}
+};

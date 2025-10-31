@@ -9,13 +9,15 @@ function format(dateString: string) {
 }
 
 export const TweetList = ({ children }: { children: React.ReactNode }) => {
-  return <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>{children}</ul>;
-}
+  return (
+    <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>{children}</ul>
+  );
+};
 
 export const Tweet = ({ tweet }: { tweet: TweetType }) => {
   return (
     <Flex className={style.tweet} component="li" p="md" gap="md" align="center">
-      <Avatar color="initials" name={tweet.user.name}/>
+      <Avatar color="initials" name={tweet.user.name} />
       <Flex direction="column" w="100%">
         <Box>
           <Link href={`/users/${tweet.user.id}`}>
@@ -26,7 +28,9 @@ export const Tweet = ({ tweet }: { tweet: TweetType }) => {
         </Box>
         <Text size="md">{tweet.content}</Text>
         <Flex justify="flex-end">
-          <Text size="xs" c="gray">{format(tweet.createdAt)}</Text>
+          <Text size="xs" c="gray">
+            {format(tweet.createdAt)}
+          </Text>
         </Flex>
       </Flex>
     </Flex>

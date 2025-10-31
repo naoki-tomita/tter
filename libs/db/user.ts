@@ -4,11 +4,13 @@ export type User = {
   id: number;
   name: string;
   bio?: string;
-}
+};
 
 export const users = {
   async findById(userId: number): Promise<User | undefined> {
-    const { rows: [user] } = await db.execute("SELECT * FROM users WHERE id = ?", [userId]);
+    const {
+      rows: [user],
+    } = await db.execute("SELECT * FROM users WHERE id = ?", [userId]);
     return {
       id: user.id as number,
       name: user.name as string,
@@ -16,8 +18,14 @@ export const users = {
     };
   },
 
-  async findByEmailAndPasswordHash(email: string, passwordHash: string): Promise<User | undefined> {
-    const { rows } = await db.execute("SELECT * FROM users WHERE email = ? AND password_hash = ?", [email, passwordHash]);
+  async findByEmailAndPasswordHash(
+    email: string,
+    passwordHash: string,
+  ): Promise<User | undefined> {
+    const { rows } = await db.execute(
+      "SELECT * FROM users WHERE email = ? AND password_hash = ?",
+      [email, passwordHash],
+    );
     if (rows.length === 0) {
       return undefined;
     }
@@ -29,7 +37,7 @@ export const users = {
 
   async findAll() {
     const { rows } = await db.execute("SELECT id, name, bio FROM users");
-    return rows.map(row => ({
+    return rows.map((row) => ({
       id: row.id as number,
       name: row.name as string,
       bio: row.bio as string | undefined,
@@ -37,11 +45,17 @@ export const users = {
   },
 
   async create(name: string, email: string, passwordHash: string) {
-    await db.execute("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)", [name, email, passwordHash]);
+    await db.execute(
+      "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)",
+      [name, email, passwordHash],
+    );
   },
 
   async update(userId: number, name: string, bio: string | undefined) {
-    await db.execute("UPDATE users SET name = ?, bio = ? WHERE id = ?", [name, bio ?? null, userId]);
+    await db.execute("UPDATE users SET name = ?, bio = ? WHERE id = ?", [
+      name,
+      bio ?? null,
+      userId,
+    ]);
   },
-
-}
+};

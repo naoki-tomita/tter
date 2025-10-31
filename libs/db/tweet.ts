@@ -6,7 +6,7 @@ export type Tweet = {
   user: User;
   content: string;
   createdAt: string;
-}
+};
 
 function toTweet(row: any): Tweet {
   return {
@@ -23,7 +23,8 @@ function toTweet(row: any): Tweet {
 
 export const tweets = {
   async findTimelines(userId: number): Promise<Tweet[]> {
-    const { rows } = await db.execute(`
+    const { rows } = await db.execute(
+      `
       SELECT
         t.id,
         t.content,
@@ -37,12 +38,15 @@ export const tweets = {
         SELECT followee_id FROM followings WHERE follower_id = ?
       )
       ORDER BY t.created_at DESC;
-    `, [userId, userId]);
+    `,
+      [userId, userId],
+    );
 
     return rows.map(toTweet);
   },
   async findByUserId(userId: number): Promise<Tweet[]> {
-    const { rows } = await db.execute(`
+    const { rows } = await db.execute(
+      `
       SELECT
         t.id,
         t.content,
@@ -54,17 +58,23 @@ export const tweets = {
       JOIN users u ON t.user_id = u.id
       WHERE t.user_id = ?
       ORDER BY t.created_at DESC;
-    `, [userId]);
+    `,
+      [userId],
+    );
 
     return rows.map(toTweet);
   },
 
   async create(userId: number, content: string) {
-    await db.execute("INSERT INTO tweets (user_id, content) VALUES (?, ?);", [userId, content]);
+    await db.execute("INSERT INTO tweets (user_id, content) VALUES (?, ?);", [
+      userId,
+      content,
+    ]);
   },
 
   async search(query: string): Promise<Tweet[]> {
-    const { rows } = await db.execute(`
+    const { rows } = await db.execute(
+      `
       SELECT
         t.id,
         t.content,
@@ -76,8 +86,10 @@ export const tweets = {
       JOIN users u ON t.user_id = u.id
       WHERE t.content LIKE ?
       ORDER BY t.created_at DESC;
-    `, [`%${query}%`]);
+    `,
+      [`%${query}%`],
+    );
 
     return rows.map(toTweet);
-  }
-}
+  },
+};

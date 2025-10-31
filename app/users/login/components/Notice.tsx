@@ -13,13 +13,16 @@ export const Notice = ({ text }: { text: string }) => {
         duration={400}
         timingFunction="ease"
       >
-        {(style) =>
+        {(style) => (
           <Notification
             style={style}
             color="red"
             onClose={() => setVisible(false)}
-          >{text}</Notification>}
+          >
+            {text}
+          </Notification>
+        )}
       </Transition>
     </div>
   );
-}
+};

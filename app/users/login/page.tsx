@@ -1,10 +1,25 @@
-import { Anchor, Button, Checkbox, Container, Group, Paper, PasswordInput, TextInput, Title, Text } from "@mantine/core";
+import {
+  Anchor,
+  Button,
+  Checkbox,
+  Container,
+  Group,
+  Paper,
+  PasswordInput,
+  TextInput,
+  Title,
+  Text,
+} from "@mantine/core";
 import classes from "./page.module.css";
 import { login } from "./actions/login";
 import Link from "next/link";
 import { Notice } from "./components/Notice";
 
-export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error: string }> }) {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error: string }>;
+}) {
   const { error } = await searchParams;
 
   return (
@@ -15,12 +30,40 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         </Title>
 
         <Text className={classes.subtitle}>
-          アカウントをお持ちでない場合 - <Link href="/users/new"><Anchor component="span" size="sm">アカウントを作成</Anchor></Link>
+          アカウントをお持ちでない場合 -{" "}
+          <Link href="/users/new">
+            <Anchor component="span" size="sm">
+              アカウントを作成
+            </Anchor>
+          </Link>
         </Text>
 
-        <Paper component="form" withBorder shadow="sm" p={22} mt={30} radius="md" action={login}>
-          <TextInput name="email" label="メールアドレス" placeholder="you@tter.dev" required radius="md" size="md" />
-          <PasswordInput name="password" label="パスワード" placeholder="Password" required mt="md" radius="md" size="md" />
+        <Paper
+          component="form"
+          withBorder
+          shadow="sm"
+          p={22}
+          mt={30}
+          radius="md"
+          action={login}
+        >
+          <TextInput
+            name="email"
+            label="メールアドレス"
+            placeholder="you@tter.dev"
+            required
+            radius="md"
+            size="md"
+          />
+          <PasswordInput
+            name="password"
+            label="パスワード"
+            placeholder="Password"
+            required
+            mt="md"
+            radius="md"
+            size="md"
+          />
           <Group justify="space-between" mt="lg">
             <Checkbox label="Remember me" />
             <Anchor component="button" size="sm">
@@ -32,7 +75,9 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
           </Button>
         </Paper>
       </Container>
-      {error != null && (<Notice text="メールアドレスまたはパスワードが正しくありません。" />)}
+      {error != null && (
+        <Notice text="メールアドレスまたはパスワードが正しくありません。" />
+      )}
     </>
   );
 }

@@ -12,12 +12,14 @@ export const ClientTimeline = ({ tweets }: { tweets: TweetType[] }) => {
       </Box>
     </>
   );
-}
+};
 
 const TimelineInner = ({ tweets }: { tweets: TweetType[] }) => {
   return (
     <TweetList>
-      {tweets.map((timeline) => <Tweet key={timeline.id} tweet={timeline} />)}
+      {tweets.map((timeline) => (
+        <Tweet key={timeline.id} tweet={timeline} />
+      ))}
     </TweetList>
   );
-}
+};

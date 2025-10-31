@@ -185,10 +185,10 @@ const theme: MantineThemeOverride = {
     to: 'gray',
     deg: 45
   },
-  fontFamily: 'Rubik, sans-serif',
+  fontFamily: '"Zen Maru Gothic", sans-serif',
   fontFamilyMonospace: 'Roboto Mono, monospace',
   headings: {
-    fontFamily: 'RocknRoll One, sans-serif',
+    fontFamily: '"Dela Gothic One", sans-serif',
     fontWeight: '600',
     sizes: {
       h1: {

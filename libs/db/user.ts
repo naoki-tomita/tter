@@ -18,6 +18,9 @@ export const users = {
 
   async findByEmailAndPasswordHash(email: string, passwordHash: string): Promise<User | undefined> {
     const { rows } = await db.execute("SELECT * FROM users WHERE email = ? AND password_hash = ?", [email, passwordHash]);
+    if (rows.length === 0) {
+      return undefined;
+    }
     return {
       id: rows[0].id as number,
       name: rows[0].name as string,

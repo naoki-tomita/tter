@@ -17,8 +17,10 @@ export async function login(form: FormData) {
       name: "AUTH_TOKEN",
       value: user.id.toString(),
       secure: true,
+      httpOnly: true,
+      sameSite: "strict",
     });
     redirect("/");
   }
-  throw new Error("Invalid credentials");
+  redirect("/users/login?error");
 }

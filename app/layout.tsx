@@ -4,6 +4,7 @@ import { User } from "./components/User";
 // import Shevelon from "../libs/themes/Shevelon";
 import Murkrow from "../libs/themes/Murkrow";
 import Link from 'next/link';
+import { SearchBar } from './components/SearchBar';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,15 +16,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <style>{`a { text-decoration: none; }`}</style>
         <MantineProvider theme={Murkrow} defaultColorScheme="auto">
           <Container strategy="grid" size={500}>
-            <Box>
-              <Flex justify="space-between" align="center" mb="md" mt="md">
-                <Link href="/">
-                  <Anchor component='span'><Title>Tter</Title></Anchor>
-                </Link>
-                <User />
-              </Flex>
+            <Box m="md">
+              <Box>
+                <Flex justify="space-between" gap="md" align="center" mb="md" mt="md">
+                  <Link href="/">
+                    <Anchor component='span'><Title>Tter</Title></Anchor>
+                  </Link>
+                  {/* <SearchBar /> */}
+                  <User />
+                </Flex>
+              </Box>
+              <Box>{children}</Box>
             </Box>
-            <Box>{children}</Box>
           </Container>
         </MantineProvider>
       </body>

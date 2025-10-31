@@ -19,8 +19,8 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         </Text>
 
         <Paper component="form" withBorder shadow="sm" p={22} mt={30} radius="md" action={login}>
-          <TextInput name="email" label="メールアドレス" placeholder="you@tter.dev" required radius="md" />
-          <PasswordInput name="password" label="パスワード" placeholder="Password" required mt="md" radius="md" />
+          <TextInput name="email" label="メールアドレス" placeholder="you@tter.dev" required radius="md" size="md" />
+          <PasswordInput name="password" label="パスワード" placeholder="Password" required mt="md" radius="md" size="md" />
           <Group justify="space-between" mt="lg">
             <Checkbox label="Remember me" />
             <Anchor component="button" size="sm">

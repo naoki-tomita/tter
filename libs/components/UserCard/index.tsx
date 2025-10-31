@@ -1,19 +1,26 @@
 "use client";
 
-import { Group, Avatar, Text, Flex, Button, Anchor } from "@mantine/core";
+import { Group, Avatar, Text, Flex, Button, LoadingOverlay } from "@mantine/core";
 import { type User } from "../../db/user";
 import classes from "./index.module.css";
 import { follow, unfollow } from "./actions";
-import { redirect, useRouter } from "next/navigation";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { wait } from "../../wait";
 
 export const UserCard = ({ followee, followerId, following }: { followee: User, followerId: number, following: boolean }) => {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const followable = followee.id !== followerId;
 
   async function handleFollowClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
-    await (following ? unfollow : follow)(followerId, followee.id);
+    setLoading(true);
+    await Promise.all([
+      (following ? unfollow : follow)(followerId, followee.id),
+      wait(300),
+    ]);
+    setLoading(false);
     router.refresh();
   }
 
@@ -45,6 +52,7 @@ export const UserCard = ({ followee, followerId, following }: { followee: User, 
             size="compact-md"
             variant={following ? "outline" : "filled"}
             onClick={handleFollowClick}
+            loading={loading}
           >
             {following ? "Unfollow" : "Follow"}
           </Button>}

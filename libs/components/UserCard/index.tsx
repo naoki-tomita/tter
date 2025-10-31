@@ -1,16 +1,18 @@
 "use client";
 
-import { Group, Avatar, Text, Flex, Button } from "@mantine/core";
+import { Group, Avatar, Text, Flex, Button, Anchor } from "@mantine/core";
 import { type User } from "../../db/user";
 import classes from "./index.module.css";
 import { follow, unfollow } from "./actions";
 import { redirect, useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const UserCard = ({ followee, followerId, following }: { followee: User, followerId: number, following: boolean }) => {
   const router = useRouter();
   const followable = followee.id !== followerId;
 
-  async function handleFollowClick() {
+  async function handleFollowClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
     await (following ? unfollow : follow)(followerId, followee.id);
     router.refresh();
   }
@@ -24,7 +26,7 @@ export const UserCard = ({ followee, followerId, following }: { followee: User, 
             color="initials"
             radius="md"
           />
-          <div>
+          <Flex direction="column" align="start">
             <Text fz="xs" tt="uppercase" fw={700} c="dimmed">
               @{followee.id}
             </Text>
@@ -36,7 +38,7 @@ export const UserCard = ({ followee, followerId, following }: { followee: User, 
             <Text fz="sm" c="dimmed">
               {followee.bio}
             </Text>
-          </div>
+          </Flex>
         </Group>
         {followable &&
           <Button

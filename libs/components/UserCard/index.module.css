@@ -5,3 +5,7 @@
 .name {
   font-family: Outfit, var(--mantine-font-family);
 }
+
+.userIdLink:hover {
+  text-decoration: underline;
+}

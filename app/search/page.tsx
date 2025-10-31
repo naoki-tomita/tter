@@ -4,7 +4,7 @@ import { search } from "./actions/tweet";
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q } = await searchParams;
-  const tweets = await search(q ?? "____決して検索に引っかからない____");
+  const tweets = await search(q);
   return (
     <>
       <Box mb="md">

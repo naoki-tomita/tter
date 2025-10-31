@@ -20,8 +20,8 @@ export const UserCard = ({ followee, followerId, following }: { followee: User, 
       (following ? unfollow : follow)(followerId, followee.id),
       wait(300),
     ]);
-    router.refresh();
     setLoading(false);
+    router.refresh();
   }
 
   return (

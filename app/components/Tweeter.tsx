@@ -21,6 +21,7 @@ export const Tweeter = () => {
         placeholder="今日はなにした？"
         value={content}
         onChange={e => setContent(e.target.value)}
+        size="md"
       />
       <Group justify="flex-end" mt="sm">
         <Button onClick={handlePost} disabled={!content}>Tweet</Button>

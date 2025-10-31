@@ -32,6 +32,7 @@ export const SearchBar = () => {
         {(style) =>
           <Box component="form" onSubmit={handleSubmit} w="100%">
             <TextInput
+              size="md"
               ref={ref}
               style={style}
               placeholder="検索する"

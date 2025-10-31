@@ -22,7 +22,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <Link href="/">
                     <Anchor component='span'><Title>Tter</Title></Anchor>
                   </Link>
-                  {/* <SearchBar /> */}
+                  <SearchBar />
                   <User />
                 </Flex>
               </Box>

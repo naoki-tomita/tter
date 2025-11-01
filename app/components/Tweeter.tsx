@@ -8,10 +8,13 @@ import { post } from "../actions/timeline";
 export const Tweeter = () => {
   const router = useRouter();
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handlePost() {
+    setLoading(true);
     await post(content);
     setContent("");
+    setLoading(false);
     router.refresh();
   }
 
@@ -19,7 +22,7 @@ export const Tweeter = () => {
     <Box>
       <Textarea placeholder="今日はなにした？" value={content} onChange={(e) => setContent(e.target.value)} size="md" />
       <Group justify="flex-end" mt="sm">
-        <Button onClick={handlePost} disabled={!content}>
+        <Button loading={loading} onClick={handlePost} disabled={!content}>
           Tweet
         </Button>
       </Group>

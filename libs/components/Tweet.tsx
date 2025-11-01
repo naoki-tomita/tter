@@ -24,7 +24,8 @@ export const Tweet = ({ tweet }: { tweet: TweetType }) => {
             </Anchor>
           </Link>
         </Box>
-        <Text size="md">{tweet.content}</Text>
+        {tweet.content.split("\n")
+          .map((it, i) => <Text size="md" key={i}>{it}</Text>) }
         <Flex justify="flex-end">
           <Text size="xs" c="gray">
             {format(tweet.createdAt)}

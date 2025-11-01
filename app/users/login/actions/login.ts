@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { users } from "../../../../libs/db/user";
 import { createPasswordHash } from "../../../../libs/password";
+import { createJwtToken } from "../../../../libs/JWT";
 
 export async function login(form: FormData) {
   const email = form.get("email")?.toString() ?? "";
@@ -12,10 +13,11 @@ export async function login(form: FormData) {
 
   const user = await users.findByEmailAndPasswordHash(email, passwordHash);
   if (user) {
+    const jwt = createJwtToken(user.id);
     const ck = await cookies();
     ck.set({
       name: "AUTH_TOKEN",
-      value: user.id.toString(),
+      value: jwt,
       secure: true,
       httpOnly: true,
       sameSite: "strict",

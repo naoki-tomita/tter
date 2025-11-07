@@ -1,7 +1,7 @@
 "use server";
 
+import { getCurrentUserId } from "../../libs/actions/user";
 import { tweets, Tweet } from "../../libs/db/tweet";
-import { getCurrentUserId } from "./user";
 
 export async function getTimelines(): Promise<Tweet[]> {
   const userId = await getCurrentUserId();

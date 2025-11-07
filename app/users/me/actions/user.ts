@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { users } from "../../../../libs/db/user";
-import { getCurrentUserId } from "../../../actions/user";
+import { getCurrentUserId } from "../../../../libs/actions/user";
 
 export async function updateUser(formData: FormData) {
   const userId = await getCurrentUserId();

@@ -14,9 +14,16 @@ import classes from "./page.module.css";
 import { login } from "./actions/login";
 import Link from "next/link";
 import { Notice } from "./components/Notice";
+import { getCurrentUserId } from "../../../libs/actions/user";
+import { useRouter } from "next/navigation";
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error: string }> }) {
   const { error } = await searchParams;
+  const router = useRouter();
+  const userId = await getCurrentUserId();
+  if (userId != null) {
+    return router.replace("/");
+  }
 
   return (
     <>

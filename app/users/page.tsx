@@ -1,8 +1,9 @@
 import { Box } from "@mantine/core";
-import { getUsers, getCurrentUserId } from "./actions/user";
 import { UserCard } from "../../libs/components/UserCard";
 import { followees } from "./actions/following";
 import Link from "next/link";
+import { getUsers } from "./actions/user";
+import { getCurrentUserId } from "../../libs/actions/user";
 
 export default async function Page() {
   const userList = await getUsers();

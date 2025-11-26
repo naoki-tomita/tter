@@ -1,6 +1,7 @@
 import "@mantine/core/styles.css";
 import { Anchor, Box, Container, Flex, MantineProvider, Title } from "@mantine/core";
 import { User } from "./components/User";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 // import Shevelon from "../libs/themes/Shevelon";
 import Murkrow from "../libs/themes/Murkrow";
 import Link from "next/link";
@@ -39,6 +40,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </Box>
           </Container>
         </MantineProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

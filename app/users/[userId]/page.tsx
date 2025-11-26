@@ -3,8 +3,8 @@ import { Tweet, TweetList } from "../../../libs/components/Tweet";
 import { getUserTweets } from "./actions/tweet";
 import { getUserInfo } from "./actions/user";
 import { UserCard } from "../../../libs/components/UserCard";
-import { getCurrentUserId } from "../../actions/user";
 import { isFollowing } from "./actions/following";
+import { getCurrentUserId } from "../../../libs/actions/user";
 
 export default async function Page({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params;

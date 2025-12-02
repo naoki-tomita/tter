@@ -5,7 +5,7 @@ export type Tweet = {
   id: number;
   user: User;
   content: string;
-  createdAt: string;
+  createdTime: number;
 };
 
 function toTweet(row: any): Tweet {
@@ -17,7 +17,7 @@ function toTweet(row: any): Tweet {
       name: row.user_name as string,
       bio: row.user_bio as string | undefined,
     },
-    createdAt: row.created_at as string,
+    createdTime: new Date(row.created_at).getTime(),
   };
 }
 

@@ -1,7 +1,8 @@
 import { Anchor, Avatar, Box, Flex, Text } from "@mantine/core";
-import { type Tweet as TweetType } from "../../libs/db/tweet";
-import style from "./Tweet.module.css";
+import { type Tweet as TweetType } from "../../db/tweet";
+import style from "./index.module.css";
 import Link from "next/link";
+import { Datetime } from "./Datetime";
 
 function format(dateString: string) {
   const date = new Date(dateString);
@@ -9,7 +10,7 @@ function format(dateString: string) {
 }
 
 export const TweetList = ({ children }: { children: React.ReactNode }) => {
-  return <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>{children}</ul>;
+  return <Box component="ul" style={{ listStyle: "none", margin: 0, padding: 0 }}>{children}</Box>;
 };
 
 export const Tweet = ({ tweet }: { tweet: TweetType }) => {
@@ -28,7 +29,7 @@ export const Tweet = ({ tweet }: { tweet: TweetType }) => {
           .map((it, i) => <Text size="md" key={i}>{it}</Text>) }
         <Flex justify="flex-end">
           <Text size="xs" c="gray">
-            {format(tweet.createdAt)}
+            <Datetime date={new Date(tweet.createdTime)} />
           </Text>
         </Flex>
       </Flex>

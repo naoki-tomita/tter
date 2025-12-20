@@ -19,9 +19,7 @@ export function createJwtToken(userId: number) {
 export function verifyJwtToken(token: string): { userId: number } | null {
   const [header, payload, signature] = token.split(".");
   const input = `${header}.${payload}`;
-  const expectedSignature = createHmac("sha256", secret)
-    .update(input)
-    .digest("base64url");
+  const expectedSignature = createHmac("sha256", secret).update(input).digest("base64url");
   if (signature !== expectedSignature) {
     return null;
   }

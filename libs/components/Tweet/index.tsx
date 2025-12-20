@@ -10,7 +10,11 @@ function format(dateString: string) {
 }
 
 export const TweetList = ({ children }: { children: React.ReactNode }) => {
-  return <Box component="ul" style={{ listStyle: "none", margin: 0, padding: 0 }}>{children}</Box>;
+  return (
+    <Box component="ul" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+      {children}
+    </Box>
+  );
 };
 
 export const Tweet = ({ tweet }: { tweet: TweetType }) => {
@@ -25,8 +29,11 @@ export const Tweet = ({ tweet }: { tweet: TweetType }) => {
             </Anchor>
           </Link>
         </Box>
-        {tweet.content.split("\n")
-          .map((it, i) => <Text size="md" key={i}>{it}</Text>) }
+        {tweet.content.split("\n").map((it, i) => (
+          <Text size="md" key={i}>
+            {it}
+          </Text>
+        ))}
         <Flex justify="flex-end">
           <Text size="xs" c="gray">
             <Datetime date={new Date(tweet.createdTime)} />

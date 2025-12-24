@@ -7,7 +7,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "prebuild": "pnpm run migrate",
+    "prevercel-build": "pnpm run migrate",
     "dev": "next",
     "migrate:local": "tsx --env-file=.env.local migrations/exec.ts",
     "migrate": "tsx migrations/exec.ts",

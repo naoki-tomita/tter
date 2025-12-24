@@ -4,6 +4,7 @@ type DatetimeFormatter = (date: Date) => string;
 
 const defaultFormatter: DatetimeFormatter = (date) =>
   `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+
 export const Datetime = ({
   style,
   date,

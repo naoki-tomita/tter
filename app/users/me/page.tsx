@@ -21,9 +21,13 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ s
       <Flex mt="md" justify="flex-end">
         <Button type="submit">更新</Button>
       </Flex>
-      {success != null && <>
-        <Toast title="Updated!" color="green">プロフィールを更新しました</Toast>
-      </>}
+      {success != null && (
+        <>
+          <Toast title="Updated!" color="green">
+            プロフィールを更新しました
+          </Toast>
+        </>
+      )}
     </Box>
   );
 }

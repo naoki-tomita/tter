@@ -4,11 +4,6 @@ import style from "./index.module.css";
 import Link from "next/link";
 import { Datetime } from "./Datetime";
 
-function format(dateString: string) {
-  const date = new Date(dateString);
-  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
-}
-
 export const TweetList = ({ children }: { children: React.ReactNode }) => {
   return (
     <Box component="ul" style={{ listStyle: "none", margin: 0, padding: 0 }}>

@@ -6,6 +6,7 @@ export type Tweet = {
   user: User;
   content: string;
   createdTime: number;
+  likeCount: number;
 };
 
 function toTweet(row: any): Tweet {
@@ -18,6 +19,7 @@ function toTweet(row: any): Tweet {
       bio: row.user_bio as string | undefined,
     },
     createdTime: new Date(row.created_at).getTime(),
+    likeCount: row.like_count as number,
   };
 }
 
@@ -31,12 +33,15 @@ export const tweets = {
         t.user_id,
         strftime('%Y-%m-%dT%H:%M:%SZ', t.created_at) as created_at,
         u.name as user_name,
-        u.bio as user_bio
+        u.bio as user_bio,
+        COUNT(l.user_id) as like_count
       FROM tweets t
       JOIN users u ON t.user_id = u.id
+      LEFT OUTER JOIN likes l ON t.id = l.tweet_id
       WHERE t.user_id = ? OR t.user_id in (
         SELECT followee_id FROM followings WHERE follower_id = ?
       )
+      GROUP BY t.id
       ORDER BY t.created_at DESC;
     `,
       [userId, userId],
@@ -53,10 +58,13 @@ export const tweets = {
         t.user_id,
         t.created_at,
         u.name as user_name,
-        u.bio as user_bio
+        u.bio as user_bio,
+        COUNT(l.user_id) as like_count
       FROM tweets t
       JOIN users u ON t.user_id = u.id
+      LEFT OUTER JOIN likes l ON t.id = l.tweet_id
       WHERE t.user_id = ?
+      GROUP BY t.id
       ORDER BY t.created_at DESC;
     `,
       [userId],
@@ -78,10 +86,13 @@ export const tweets = {
         t.user_id,
         t.created_at,
         u.name as user_name,
-        u.bio as user_bio
+        u.bio as user_bio,
+        COUNT(l.user_id) as like_count
       FROM tweets t
       JOIN users u ON t.user_id = u.id
+      LEFT OUTER JOIN likes l ON t.id = l.tweet_id
       WHERE t.content LIKE ?
+      GROUP BY t.id
       ORDER BY t.created_at DESC;
     `,
       [`%${query}%`],

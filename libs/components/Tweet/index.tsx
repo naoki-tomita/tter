@@ -3,6 +3,7 @@ import { type Tweet as TweetType } from "../../db/tweet";
 import style from "./index.module.css";
 import Link from "next/link";
 import { Datetime } from "./Datetime";
+import { Like } from "./Like";
 
 export const TweetList = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -29,8 +30,9 @@ export const Tweet = ({ tweet }: { tweet: TweetType }) => {
             {it}
           </Text>
         ))}
-        <Flex justify="flex-end">
-          <Text size="xs" c="gray">
+        <Flex justify="space-between" gap="sm" align="center">
+          <Like id={tweet.id} count={tweet.likeCount} />
+          <Text size="xs" c="gray" lh="1">
             <Datetime date={new Date(tweet.createdTime)} />
           </Text>
         </Flex>

@@ -13,10 +13,10 @@ export const Like = ({ id, count }: { id: number, count: number }) => {
 
   return (
     <Flex align="center" gap="xs">
-      <ActionIcon variant="subtle" color="red" size="sm" onClick={handleLike}>
-        <CiHeart color="red"/>
+      <ActionIcon variant="subtle" color="pink" size="sm" onClick={handleLike}>
+        <CiHeart color="pink"/>
       </ActionIcon>
-      <Text size="xs" c="red" lh="1">{count}</Text>
+      <Text size="xs" c="pink" lh="1">{count}</Text>
     </Flex>
   );
 };

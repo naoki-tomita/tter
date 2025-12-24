@@ -9,5 +9,5 @@ export async function updateUser(formData: FormData) {
   const name = formData.get("name");
   const bio = formData.get("bio");
   await users.update(userId, name as string, bio as string | undefined);
-  redirect("/users/me");
+  redirect("/users/me?success");
 }

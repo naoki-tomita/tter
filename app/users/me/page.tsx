@@ -1,9 +1,11 @@
-import { Box, Button, Flex, Textarea, TextInput } from "@mantine/core";
+import { Box, Button, Flex, Notification, Textarea, TextInput } from "@mantine/core";
 import { getCurrentUser } from "../../actions/user";
 import { updateUser } from "./actions/user";
+import { Toast } from "../../../libs/components/Toast/Toast";
 
-export default async function Page() {
+export default async function Page({ searchParams }: { searchParams: Promise<{ success: string }> }) {
   const user = await getCurrentUser();
+  const { success } = await searchParams;
   return (
     <Box component="form" action={updateUser}>
       <TextInput
@@ -19,6 +21,9 @@ export default async function Page() {
       <Flex mt="md" justify="flex-end">
         <Button type="submit">更新</Button>
       </Flex>
+      {success != null && <>
+        <Toast title="Updated!" color="green">プロフィールを更新しました</Toast>
+      </>}
     </Box>
   );
 }

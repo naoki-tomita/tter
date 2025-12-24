@@ -7,7 +7,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "prevercel-build": "pnpm run migrate",
     "dev": "next",
+    "migrate:local": "tsx --env-file=.env.local migrations/exec.ts",
+    "migrate": "tsx migrations/exec.ts",
     "format": "prettier --write . --print-width 120"
   },
   "dependencies": {
@@ -29,6 +32,7 @@
     "postcss-preset-mantine": "^1.18.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.7.4",
+    "tsx": "^4.21.0",
     "typescript": "5.9.3"
   }
 }

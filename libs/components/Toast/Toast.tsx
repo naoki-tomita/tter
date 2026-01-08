@@ -12,6 +12,7 @@ export const Toast = ({ title, children, color }: { title?: string; children: st
         div.style.top = "40px";
         div.style.right = "40px";
         setTimeout(setMounted.bind(null, true));
+        setTimeout(setMounted.bind(null, false), 4000);
       }}
     >
       <Transition mounted={mounted} transition="fade-left" duration={400} timingFunction="ease">

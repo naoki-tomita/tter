@@ -16,6 +16,7 @@ import Link from "next/link";
 import { Notice } from "./components/Notice";
 import { getCurrentUserId } from "../../../libs/actions/user";
 import { redirect, RedirectType } from "next/navigation";
+import { Toast } from "../../../libs/components/Toast/Toast";
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error: string }> }) {
   const { error } = await searchParams;
@@ -62,7 +63,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
           </Button>
         </Paper>
       </Container>
-      {error != null && <Notice text="メールアドレスまたはパスワードが正しくありません。" />}
+      {error != null && <Toast color="red">メールアドレスまたはパスワードが正しくありません。</Toast>}
     </>
   );
 }

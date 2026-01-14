@@ -13,7 +13,6 @@ import {
 import classes from "./page.module.css";
 import { login } from "./actions/login";
 import Link from "next/link";
-import { Notice } from "./components/Notice";
 import { getCurrentUserId } from "../../../libs/actions/user";
 import { redirect, RedirectType } from "next/navigation";
 import { Toast } from "../../../libs/components/Toast/Toast";

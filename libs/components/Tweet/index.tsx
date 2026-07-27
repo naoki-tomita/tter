@@ -13,6 +13,23 @@ export const TweetList = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+const TextWithLink = ({ text }: { text: string }) => {
+  return (
+    <span>
+      {text.split(/(https?:\/\/[^\s]+)/g).map((part, index) => {
+        if (part.match(/https?:\/\/[^\s]+/)) {
+          return (
+            <Link key={index} href={part} target="_blank" rel="noopener noreferrer">
+              {part}
+            </Link>
+          );
+        }
+        return part;
+      })}
+    </span>
+  );
+};
+
 export const Tweet = ({ tweet }: { tweet: TweetType }) => {
   return (
     <Flex className={style.tweet} component="li" p="md" gap="md" align="center">
@@ -27,7 +44,7 @@ export const Tweet = ({ tweet }: { tweet: TweetType }) => {
         </Box>
         {tweet.content.split("\n").map((it, i) => (
           <Text size="md" key={i}>
-            {it}
+            <TextWithLink text={it} />
           </Text>
         ))}
         <Flex justify="space-between" gap="sm" align="center">

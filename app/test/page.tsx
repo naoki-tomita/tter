@@ -1,9 +1,11 @@
-import { testAction } from "./actions/test";
+"use client";
+import { useToast } from "../../libs/components/Toast";
 
 export default function TestPage() {
+  const { showToast } = useToast();
   return (
     <div>
-      <button onClick={testAction}>Click Me!</button>
+      <button onClick={() => { showToast("Test message", "Test title"); }}>Click Me!</button>
     </div>
   );
 }

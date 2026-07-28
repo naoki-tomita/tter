@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Notification, Textarea, TextInput } from "@mantine/core";
 import { getCurrentUser } from "../../actions/user";
 import { updateUser } from "./actions/user";
-import { Toast } from "../../../libs/components/Toast/Toast";
+import { SToast } from "../../../libs/components/Toast";
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ success: string }> }) {
   const user = await getCurrentUser();
@@ -23,9 +23,9 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ s
       </Flex>
       {success != null && (
         <>
-          <Toast title="Updated!" color="green">
+          <SToast title="Updated!" color="green">
             プロフィールを更新しました
-          </Toast>
+          </SToast>
         </>
       )}
     </Box>

@@ -1,0 +1,5 @@
+.toastWrapper {
+  position: fixed;
+  bottom: var(--mantine-spacing-md);
+  right: var(--mantine-spacing-md);
+}
